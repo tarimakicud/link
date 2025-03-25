@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #333;
+            border-radius: 10px;
+        }
+        video {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            background: #ff6600;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #ff4500;
+        }
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Custom Video Player</h2>
+
+    <div class="container">
+        <video id="videoPlayer" controls>
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="controls">
+            <button onclick="togglePlay()">Play/Pause</button>
+            <button onclick="goFullScreen()">Full Screen</button>
+            <select id="videoSelector" onchange="changeVideo()">
+                <option value="1.mp4">Video 1</option>
+                <option value="2.mp4">Video 2</option>
+                <option value="3.mp4">Video 3</option>
+                <option value="4.mp4">Video 4</option>
+                <option value="5.mp4">Video 4</option>
+                <option value="6.mp4">Video 4</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        let video = document.getElementById("videoPlayer");
+        let selector = document.getElementById("videoSelector");
+
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        function goFullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { 
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { 
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { 
+                video.msRequestFullscreen();
+            }
+        }
+
+        function changeVideo() {
+            video.src = selector.value;
+            video.play();
+        }
+    </script>
+
+</body>
+</html>
